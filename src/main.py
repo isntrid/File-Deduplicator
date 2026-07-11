@@ -1,10 +1,10 @@
 from pathlib import Path
 
 class File:
-    def __init__(self, size, modified_time, creation_time):
-        self.size = size
-        self.modified_time = modified_time
-        self.creation_time = creation_time
+    def __init__(self, path):
+        self.size = path.st_size
+        self.modified_time = path.st_mtime
+        self.creation_time = path.st_ctime
 
     def __repr__(self):
         return f"size={self.size}, modified={self.modified_time}, created={self.creation_time})"
@@ -19,17 +19,19 @@ def set_directory():
         location = "downloads" #temp
         directory = home / location
         if directory.is_dir():
-            path = directory.resolve()
+            return directory.resolve()
         else:
             print("Directory not found; did you spell it correctly?")
 
 def convert_files():
-    files = list(dir.iterdir())
-    for file in files:
+    files = []
+    for file in dir.iterdir():
         path = file.stat()
-        size = path.st_size, modified_time = path.st_mtime, creation_time = path.st_ctime
-        File(size=size, modified_time=modified_time, creation_time=creation_time)
+        new_file = File(path)
+        files.append(new_file)
+    return files
 
+def compare_files():
 
 
 def main():

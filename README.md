@@ -15,13 +15,6 @@ The program first filters files by size, then compares only matching files using
 - Allows you to delete duplicate copies while keeping one version
 - Supports any file type
 
-## How it works:
-1. Retrieves all files from the selected directory
-2. Groups files with identical sizes
-3. Generates SHA-256 checksums for possible duplicates
-4. Compares checksums to confirm identical files
-5. Gives the option to remove duplicate files
-
 ## Requirements:
 - Python 3.8+
 - Read/write permissions for target folder
